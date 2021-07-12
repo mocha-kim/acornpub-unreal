@@ -43,20 +43,23 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	bool CanSetWeapon();
+	void SetWeapon(class AABWeapon* NewWeapon);
+
 	UPROPERTY(VisibleAnywhere, Category = Weapon)
-	USkeletalMeshComponent* Weapon;
+	class AABWeapon* CurrentWeapon;
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* SpringArm;
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
-
+	
 private:
 	void UpDown(float NewAxisValue);
 	void LeftRight(float NewAxisValue);
-	void LookUp(float NewAxisValue);
 	void Turn(float NewAxisValue);
+	void LookUp(float NewAxisValue);
 
 	void ViewChange();
 	void Attack();
@@ -69,27 +72,27 @@ private:
 	void AttackCheck();
 
 private:
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=Attck, Meta=(AllowPrivateAccess=true))
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	bool IsAttacking;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=Attck, Meta=(AllowPrivateAccess=true))
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	bool CanNextCombo;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=Attck, Meta=(AllowPrivateAccess=true))
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	bool IsComboInputOn;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=Attck, Meta=(AllowPrivateAccess=true))
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	int32 CurrentCombo;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=Attck, Meta=(AllowPrivateAccess=true))
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	int32 MaxCombo;
 
 	UPROPERTY()
 	class UABAnimInstance* ABAnim;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=Attck, Meta=(AllowPrivateAccess=true))
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
 	float AttackRange;
 
-	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category=Attck, Meta=(AllowPrivateAccess=true))
-	float AttackRadious;
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category = Attack, Meta = (AllowPrivateAccess = true))
+	float AttackRadius;
 };
